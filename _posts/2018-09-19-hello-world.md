@@ -9,15 +9,21 @@ tags: []
 
 
 ### <center>街拍：时尚不是夸张，不要让自己成为笑话</center>
-<center>![](http://5b0988e595225.cdn.sohucs.com/images/20180805/5958ad45d9a54b7baaf1aa303d66be6c.jpeg)</center>
 
+<div style="text-align: center">
+<img src="http://5b0988e595225.cdn.sohucs.com/images/20180805/5958ad45d9a54b7baaf1aa303d66be6c.jpeg"/>
+</div>
 <center>**其实说到穿着时尚,真的不是单纯指个性突出,有时候往往太个性的人看上去并不是那么时尚**</center>
 
-<center>![](http://5b0988e595225.cdn.sohucs.com/images/20180805/18fa763bf39d411d88b3b41a9de20a5f.jpeg)</center>
+<div style="text-align: center">
+<img src="http://5b0988e595225.cdn.sohucs.com/images/20180805/18fa763bf39d411d88b3b41a9de20a5f.jpeg"/>
+</div>
 
 <center>**所谓的时尚，是看上去好看、新颖，又有气质，充满自信让自己在时尚生活更出彩。**
 
-<center>![](http://5b0988e595225.cdn.sohucs.com/images/20180805/a4a7f7aa1d3b44dfad49a021a8b8e8d0.jpeg)
+<div style="text-align: center">
+<img src="http://5b0988e595225.cdn.sohucs.com/images/20180805/a4a7f7aa1d3b44dfad49a021a8b8e8d0.jpeg"/>
+</div>
 
 <center>**让自己穿着时尚除了衣服外，还有一些搭配会让我们看上去时尚味十足。**
 
