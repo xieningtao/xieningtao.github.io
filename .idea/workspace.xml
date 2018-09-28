@@ -4,6 +4,7 @@
     <list default="true" id="2900d344-1c89-49d5-9213-726e2bc33049" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/_includes/portfolio.html" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/_layouts/front.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -166,12 +167,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1538104724063</updated>
-      <workItem from="1538104726500" duration="68000" />
+      <workItem from="1538104726500" duration="756000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68000" />
+    <option name="totallyTimeSpent" value="756000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1064" extended-state="6" />
