@@ -6,6 +6,8 @@ description: A jekyll template for landing pages, portfolio and blogging
 baseurl: "" # the subpath of your site, e.g. /blog/ (If you use organization leave empty)
 url: "https://jekynewage.github.io" # the base hostname & protocol for your site
 
+author: David Freeman # add your name
+author-img: david-freeman.jpg # add your photo
 #Google Ad Words Data from scripts code (using Google responsive options) and ad client
 data-ad-slot: 2973388149
 data-ad-client: ca-pub-9204963049240271
@@ -33,5 +35,9 @@ permalink: pretty
 paginate: 5
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 
-gems: [jekyll-paginate, jekyll-feed]
+plugins:
+  - jekyll-paginate
+
+paginate: 4
+paginate_path: "myblog/page/:num"
 # Build settings
