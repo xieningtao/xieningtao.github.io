@@ -1,7 +1,7 @@
 ---
 layout: blog-detail
-title: "Welcome to Jekyll!"
-date: 2017-04-06 13:32:20 +0300
+title: "不同分辨率加载图片"
+date: 2018-10-28 13:32:20 +0300
 description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
 img:  # Add image post (optional)
 ---
@@ -54,10 +54,14 @@ canvasBitmapSize（RGB_565）：1080*1.33333*1474*1.33333*2=5659200
 
 10-28 10:23:41.761 25622-25622/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:57  ]method->convertDrawable2BitmapByCanvas drawable width: 1080 height: 1474 format: -1
 10-28 10:23:41.773 25622-25622/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:46  ]method-> showTestBgInfo width: 1080 height: 1474 simpleBitmapSize: 6367680 canvasBitmapSize: 3183840 viewTag: bigTestXdpi
+```
 
+###计算过程
 inTargetDensity/inDensity =320/480= 0.66666
 simpleBitmapSize（ARGB_8888）：1080*0.66666*1474*0.66666*4=2831040
 canvasBitmapSize（RGB_565）：1080*0.66666*1474*0.66666*2=1415520
+
+```
 10-28 10:23:41.773 25622-25622/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:57  ]method->convertDrawable2BitmapByCanvas drawable width: 720 height: 983 format: -1
 10-28 10:23:41.780 25622-25622/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:46  ]method-> showTestBgInfo width: 720 height: 983 simpleBitmapSize: 2831040 canvasBitmapSize: 1415520 viewTag: bigTestXXdpi
 ```
@@ -171,6 +175,7 @@ private void showTestBgInfo(View view, String viewTag) {
     }
 ```
 - ### 布局
+
 ```
 <FrameLayout
         android:id="@+id/test_bg_fl"
