@@ -1,0 +1,198 @@
+---
+layout: blog-detail
+title: "Welcome to Jekyll!"
+date: 2017-04-06 13:32:20 +0300
+description: You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. # Add post description (optional)
+img:  # Add image post (optional)
+---
+- ###相关说明
+ origin bitmap 1080x1474  文件大小:423,359，后续计算出来的都是内存大小  全图显示
+
+
+------------
+
+
+** 图片放置的位置**
+
+position|name|name
+---|---|:---:
+hdpi|bigTest|bigTestHdpi
+xhdpi | bigTest   | bigTestXdpi
+xxhdpi|  bigTest   | bigTestXXdpi
+
+------------
+1. BitmapFactory.Options 内部几个重要参数的说明
+2. inSampleSize：按照这个数字进行采样，比如为4的时候，高和宽都是1/4，总大小为原来的1/16
+3. inPreferredConfig：bitmap的配置模式，ARGB_8888，RGB_565
+4. inDensity: 图片放置的位置，比如说hdpi:240
+5. inTargetDensity:目标机器的密度：比如说【红米 720x1080】就是xdpi:320
+6. 总的大小公式基本为：((width/sampleSize) * (inTargetDensity/inDensity)) * ((height/sampleSize) * (inTargetDensity/inDensity)) * config
+
+**日志说明：method->convertDrawable2BitmapByCanvas，这一行日志主要是说明这个drawable的width和height
+method-> showTestBgInfo,这一行日志主要是bitmap的高宽，以及bitmapsize，canvasBitmapSize这个是RGB_565格式的，viewTag表示drawable的名字**
+
+------------
+- ### 红米 720x1080 format:ARGB_8888 Xdpi
+
+1. sampleSize = 1
+2. inTargetDensity/inDensity =320/320= 1 系统算法会加载合适文件夹下面的图片，这个机器是加载xhdpi
+3. config默认采用的是ARGB_8888，每个像素为4个字节
+4. 公式为：
+5. simpleBitmapSize（ARGB_8888）：1080*1474*4=6367680
+6. canvasBitmapSize（RGB_565）：1080*1474*2=6367680
+
+```
+10-28 10:23:41.697 25622-25622/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:57  ]method->convertDrawable2BitmapByCanvas drawable width: 1080 height: 1474 format: -1
+10-28 10:23:41.720 25622-25622/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:46  ]method-> showTestBgInfo width: 1080 height: 1474 simpleBitmapSize: 6367680 canvasBitmapSize: 3183840 viewTag: bigTest
+
+inTargetDensity/inDensity =320/240= 1.33333
+simpleBitmapSize（ARGB_8888）：1080*1.33333*1474*1.33333*4=11318400
+canvasBitmapSize（RGB_565）：1080*1.33333*1474*1.33333*2=5659200
+
+10-28 10:23:41.721 25622-25622/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:57  ]method->convertDrawable2BitmapByCanvas drawable width: 1440 height: 1965 format: -1
+10-28 10:23:41.760 25622-25622/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:46  ]method-> showTestBgInfo width: 1440 height: 1965 simpleBitmapSize: 11318400 canvasBitmapSize: 5659200 viewTag: bigTestHdpi
+
+10-28 10:23:41.761 25622-25622/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:57  ]method->convertDrawable2BitmapByCanvas drawable width: 1080 height: 1474 format: -1
+10-28 10:23:41.773 25622-25622/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:46  ]method-> showTestBgInfo width: 1080 height: 1474 simpleBitmapSize: 6367680 canvasBitmapSize: 3183840 viewTag: bigTestXdpi
+
+inTargetDensity/inDensity =320/480= 0.66666
+simpleBitmapSize（ARGB_8888）：1080*0.66666*1474*0.66666*4=2831040
+canvasBitmapSize（RGB_565）：1080*0.66666*1474*0.66666*2=1415520
+10-28 10:23:41.773 25622-25622/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:57  ]method->convertDrawable2BitmapByCanvas drawable width: 720 height: 983 format: -1
+10-28 10:23:41.780 25622-25622/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:46  ]method-> showTestBgInfo width: 720 height: 983 simpleBitmapSize: 2831040 canvasBitmapSize: 1415520 viewTag: bigTestXXdpi
+```
+
+------------
+
+
+- ### sm-n9002  1920x1080 format:ARGB_8888 XXdpi(计算方式跟红米类似)
+
+```
+10-28 10:33:39.037 25240-25240/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:57  ]method->convertDrawable2BitmapByCanvas drawable width: 1080 height: 1474 format: -1
+10-28 10:33:39.047 25240-25240/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:46  ]method-> showTestBgInfo width: 1080 height: 1474 simpleBitmapSize: 6367680 canvasBitmapSize: 3183840 viewTag: bigTest
+
+
+10-28 10:33:39.047 25240-25240/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:57  ]method->convertDrawable2BitmapByCanvas drawable width: 2160 height: 2948 format: -1
+10-28 10:33:39.087 25240-25240/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:46  ]method-> showTestBgInfo width: 2160 height: 2948 simpleBitmapSize: 25470720 canvasBitmapSize: 12735360 viewTag: bigTestHdpi
+
+
+10-28 10:33:39.087 25240-25240/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:57  ]method->convertDrawable2BitmapByCanvas drawable width: 1620 height: 2211 format: -1
+10-28 10:33:39.107 25240-25240/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:46  ]method-> showTestBgInfo width: 1620 height: 2211 simpleBitmapSize: 14327280 canvasBitmapSize: 7163640 viewTag: bigTestXdpi
+
+
+10-28 10:33:39.107 25240-25240/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:57  ]method->convertDrawable2BitmapByCanvas drawable width: 1080 height: 1474 format: -1
+10-28 10:33:39.117 25240-25240/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:46  ]method-> showTestBgInfo width: 1080 height: 1474 simpleBitmapSize: 6367680 canvasBitmapSize: 3183840 viewTag: bigTestXXdpi
+```
+
+
+------------
+
+
+- ### honor 7x 1080x2160 format:ARGB_8888 XXdpi(计算方式跟红米类似)
+
+```
+10-28 10:46:26.930 28253-28253/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:57  ]method->convertDrawable2BitmapByCanvas drawable width: 1080 height: 1474 format: -1
+10-28 10:46:26.938 28253-28253/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:46  ]method-> showTestBgInfo width: 1080 height: 1474 simpleBitmapSize: 6367680 canvasBitmapSize: 3183840 viewTag: bigTest
+
+10-28 10:46:26.938 28253-28253/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:57  ]method->convertDrawable2BitmapByCanvas drawable width: 2160 height: 2948 format: -1
+10-28 10:46:26.961 28253-28253/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:46  ]method-> showTestBgInfo width: 2160 height: 2948 simpleBitmapSize: 25470720 canvasBitmapSize: 12735360 viewTag: bigTestHdpi
+
+10-28 10:46:26.961 28253-28253/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:57  ]method->convertDrawable2BitmapByCanvas drawable width: 1620 height: 2211 format: -1
+10-28 10:46:26.981 28253-28253/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:46  ]method-> showTestBgInfo width: 1620 height: 2211 simpleBitmapSize: 14327280 canvasBitmapSize: 7163640 viewTag: bigTestXdpi
+
+10-28 10:46:26.983 28253-28253/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:57  ]method->convertDrawable2BitmapByCanvas drawable width: 1080 height: 1474 format: -1
+10-28 10:46:26.991 28253-28253/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:46  ]method-> showTestBgInfo width: 1080 height: 1474 simpleBitmapSize: 6367680 canvasBitmapSize: 3183840 viewTag: bigTestXXdpi
+```
+
+
+------------
+- ### 展示在小控件上面的情况，以下是情况说明以及一些总结
+1. honor 7x 控件大小：100dp X 150dp
+2. 写在xml里面的背景图片，大图片加载内存过于大，没有进行缩放
+3. xml里面加载图片是多么的粗暴，不会根据控件的大小（那个时候控件的大小也不知道），也不会计算采样率，只会粗暴的使用规则inTargetDensity/inDensity来加载整张图片
+
+------------
+
+```
+10-28 10:52:44.638 28585-28585/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:57  ]method->convertDrawable2BitmapByCanvas drawable width: 1080 height: 1474 format: -1
+10-28 10:52:44.644 28585-28585/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:46  ]method-> showTestBgInfo width: 1080 height: 1474 simpleBitmapSize: 6367680 canvasBitmapSize: 3183840 viewTag: bigTest
+
+10-28 10:52:44.645 28585-28585/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:57  ]method->convertDrawable2BitmapByCanvas drawable width: 2160 height: 2948 format: -1
+10-28 10:52:44.667 28585-28585/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:46  ]method-> showTestBgInfo width: 2160 height: 2948 simpleBitmapSize: 25470720 canvasBitmapSize: 12735360 viewTag: bigTestHdpi
+
+10-28 10:52:44.667 28585-28585/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:57  ]method->convertDrawable2BitmapByCanvas drawable width: 1620 height: 2211 format: -1
+10-28 10:52:44.680 28585-28585/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:46  ]method-> showTestBgInfo width: 1620 height: 2211 simpleBitmapSize: 14327280 canvasBitmapSize: 7163640 viewTag: bigTestXdpi
+
+10-28 10:52:44.683 28585-28585/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:57  ]method->convertDrawable2BitmapByCanvas drawable width: 1080 height: 1474 format: -1
+10-28 10:52:44.689 28585-28585/com.sf.SFSample I/ActivityMultiDPI: [ main: ActivityMultiDPI.java:46  ]method-> showTestBgInfo width: 1080 height: 1474 simpleBitmapSize: 6367680 canvasBitmapSize: 3183840 viewTag: bigTestXXdpi
+```
+- ### 代码
+
+```
+private void showTestBgInfo(View view, String viewTag) {
+        Drawable drawable = null;
+        if (view instanceof ImageView) {
+            drawable = ((ImageView) view).getDrawable();
+        } else {
+            drawable = view.getBackground();
+        }
+        Bitmap simpleBitmap = convertDrawable2BitmapSimple(drawable);
+        int width = simpleBitmap.getWidth();
+        int height = simpleBitmap.getHeight();
+        int simpleBitmapSize = BitmapCompat.getAllocationByteCount(simpleBitmap);
+        Bitmap canvasBitmap = convertDrawable2BitmapByCanvas(drawable);
+        int canvasBitmapSize = BitmapCompat.getAllocationByteCount(canvasBitmap);
+        L.info(TAG, "method-> showTestBgInfo width: " + width + " height: " + height
+                + " simpleBitmapSize: " + simpleBitmapSize
+                + " canvasBitmapSize: " + canvasBitmapSize + " viewTag: " + viewTag);
+    }
+
+    public Bitmap convertDrawable2BitmapSimple(Drawable drawable) {
+        BitmapDrawable bd = (BitmapDrawable) drawable;
+        return bd.getBitmap();
+    }
+
+    public Bitmap convertDrawable2BitmapByCanvas(Drawable drawable) {
+        L.info(TAG, "method->convertDrawable2BitmapByCanvas drawable width: "
+                + drawable.getIntrinsicWidth()
+                + " height: " + drawable.getIntrinsicHeight()
+                + " format: " + drawable.getOpacity());
+        Bitmap bitmap = Bitmap
+                .createBitmap(
+                        drawable.getIntrinsicWidth(),
+                        drawable.getIntrinsicHeight(),
+                        drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
+                                : Bitmap.Config.RGB_565);
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(),
+                drawable.getIntrinsicHeight());
+        drawable.draw(canvas);
+        return bitmap;
+    }
+```
+- ### 布局
+```
+<FrameLayout
+        android:id="@+id/test_bg_fl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/big_test" />
+
+    <FrameLayout
+        android:id="@+id/big_test_hdpi_bg_fl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/big_test_hdpi" />
+
+    <FrameLayout
+        android:id="@+id/big_test_xdpi_bg_fl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/big_test_xdpi" />
+
+    <FrameLayout
+        android:id="@+id/big_test_xxhdpi_bg_fl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/big_test_xxhdpi" />
+```
